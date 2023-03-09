@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+   <t t-name="ProductItem" t-inherit="point_of_sale.ProductItem" t-inherit-mode="extension" owl="1">
+     <xpath expr="//div[hasclass('product-name')]" position="after">
+         <style>
+            div.product_brand {
+                  padding-left: 10px;
+                }
+         </style>
+         <t t-if="props.product.brand">
+             <div style="font-size:12px;" class="product_brand">
+          <span >Brand: <t t-esc="props.product.brand"/></span>
+             </div>
+         </t>
+     </xpath>
+   </t>
+
+   <t t-name="Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension" owl="1">
+     <xpath expr="//li[hasclass('orderline')]" position="inside">
+         <t t-if="props.line.product.brand">
+             <t t-log="props"/>
+          <span style="font-size:13px;font-style:italic;">Brand: <t t-esc="props.line.product.brand"/></span>
+         </t>
+     </xpath>
+   </t>
+</templates>
